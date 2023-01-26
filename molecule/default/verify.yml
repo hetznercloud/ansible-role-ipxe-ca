@@ -1,0 +1,19 @@
+---
+- name: Verify
+  hosts: all
+  tasks:
+    - name: Start iPXE cert creation once
+      ansible.builtin.systemd:
+        name: ipxe-ca-sign.service
+        state: started
+
+    - name: Get meta infos of auto directory
+      ansible.builtin.find:
+        paths: /var/www/ca/auto/
+      register: reg_auto_find
+
+    - name: Assert that auto directory is not empty
+      ansible.builtin.assert:
+        that:
+          - "reg_auto_find.matched > 0"
+        success_msg: "Found files in auto directory"

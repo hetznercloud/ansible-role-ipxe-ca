@@ -1,0 +1,21 @@
+---
+role_name_check: 1
+
+dependency:
+  name: galaxy
+
+driver:
+  name: hetznercloud
+
+platforms:
+  - name: ipxe-ca-default-jammy
+    server_type: cx11
+    image: ubuntu-22.04
+    location: fsn1
+
+provisioner:
+  name: ansible
+  options:
+    D: true
+  playbooks:
+    converge: converge.yml

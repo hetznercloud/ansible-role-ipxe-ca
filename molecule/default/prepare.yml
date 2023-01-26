@@ -1,0 +1,18 @@
+---
+- name: Prepare
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Update apt cache
+      ansible.builtin.apt:
+        update_cache: true
+
+    - name: Copy certificate files
+      ansible.builtin.copy:
+        src: "files/{{ item }}"
+        dest: "/etc/ssl/private/{{ item }}"
+        mode: '0644'
+      no_log: true
+      loop:
+        - ipxe.crt
+        - ipxe.key

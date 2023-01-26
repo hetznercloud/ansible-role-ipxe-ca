@@ -1,0 +1,16 @@
+offline: true
+skip_list:
+  - package-latest
+  - no-changed-when
+  - avoid-implicit[copy-content]
+  - experimental
+warn_list:
+  - ignore-errors
+enable_list:
+  - yaml
+extra_vars: {}
+exclude_paths:
+  - /root/.cache
+  - molecule/default/converge.yml
+  - .git/
+  - .cache/

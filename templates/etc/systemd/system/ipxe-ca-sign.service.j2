@@ -1,0 +1,9 @@
+{{ ansible_managed | comment }}
+
+[Unit]
+Description=Cross-sign all Root CAs to an iPXE compatible format
+
+[Service]
+Type=oneshot
+EnvironmentFile=-/etc/default/ipxe-ca-sign
+ExecStart=/usr/local/bin/ipxe-asn1-hack

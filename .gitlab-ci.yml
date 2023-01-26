@@ -1,0 +1,3 @@
+---
+include:
+  - { project: cloud/platform/templates/ci, file: ansible.yml }

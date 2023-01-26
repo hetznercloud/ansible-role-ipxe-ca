@@ -1,0 +1,62 @@
+---
+- name: Ensure iPXE CA web path exists
+  ansible.builtin.file:
+    path: "{{ ipxe_ca__web_path }}/{{ item }}"
+    state: directory
+    recurse: true
+    mode: '0755'
+  loop:
+    - auto
+    - signed
+
+- name: Ensure signing-script configuration is latest
+  ansible.builtin.template:
+    src: etc/default/ipxe-ca-sign.j2
+    dest: /etc/default/ipxe-ca-sign
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Ensure openssl configuration is latest
+  ansible.builtin.template:
+    src: etc/default/ipxe-openssl.cnf.j2
+    dest: /etc/default/ipxe-openssl.cnf
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Copy cert-signing script
+  ansible.builtin.copy:
+    src: files/ipxe-asn1-hack.py
+    dest: /usr/local/bin/ipxe-asn1-hack
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Ensure systemd service is latest
+  ansible.builtin.template:
+    src: etc/systemd/system/ipxe-ca-sign.service.j2
+    dest: /etc/systemd/system/ipxe-ca-sign.service
+    owner: root
+    group: root
+    mode: '0644'
+  notify:
+    - Reload systemd
+
+- name: Ensure systemd timer is latest
+  ansible.builtin.template:
+    src: etc/systemd/system/ipxe-ca-sign.timer.j2
+    dest: /etc/systemd/system/ipxe-ca-sign.timer
+    owner: root
+    group: root
+    mode: '0644'
+  notify:
+    - Reload systemd
+
+- name: Flush handlers
+  ansible.builtin.meta: flush_handlers
+
+- name: "Ensure systemd timer is {{ 'enabled' if ipxe_ca__systemd_timer_enabled else 'disabled' }}"
+  ansible.builtin.systemd:
+    name: ipxe-ca-sign.timer
+    enabled: "{{ ipxe_ca__systemd_timer_enabled }}"

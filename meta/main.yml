@@ -1,0 +1,21 @@
+---
+galaxy_info:
+  role_name: ipxe_ca
+  author: Cloud Platform
+  namespace: hetzner
+  description: Role to configure an iPXE CA to cross-sign Root CAs
+  company: Hetzner Cloud
+  license: MIT
+  min_ansible_version: "2.10"
+  platforms:
+    - name: Ubuntu
+      versions:
+        - jammy
+  galaxy_tags: []
+
+dependencies:
+  - role: apt_packages
+    apt_packages:
+      - ca-certificates
+      - openssl
+      - python3-pyasn1
