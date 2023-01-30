@@ -13,9 +13,4 @@ galaxy_info:
         - jammy
   galaxy_tags: []
 
-dependencies:
-  - role: apt_packages
-    apt_packages:
-      - ca-certificates
-      - openssl
-      - python3-pyasn1
+dependencies: []

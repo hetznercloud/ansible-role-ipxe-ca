@@ -1,4 +1,12 @@
 ---
+- name: Ensure dependencies are present
+  ansible.builtin.apt:
+    name:
+      - ca-certificates
+      - openssl
+      - python3-pyasn1
+    state: present
+
 - name: Ensure iPXE CA web path exists
   ansible.builtin.file:
     path: "{{ ipxe_ca__web_path }}/{{ item }}"
