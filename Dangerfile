@@ -7,6 +7,6 @@ if git.commits.any? { |c| c.message =~ /^Merge branch/ }
 end
 
 if !git.modified_files.include?("CHANGELOG.md") && !has_app_changes
-  fail("Please include a CHANGELOG entry. \nYou can find it at [CHANGELOG.md](https://github.com/hetznercloud/ansible-ipxe-ca/blob/main/CHANGELOG.md).")
+  fail("Please include a CHANGELOG entry. \nYou can find it at [CHANGELOG.md](https://github.com/hetznercloud/ansible-role-ipxe-ca/blob/main/CHANGELOG.md).")
   message "Note, we use [changelogger](https://github.com/MarkusFreitag/changelogger) as changelog tooling."
 end
