@@ -5,7 +5,7 @@ galaxy_info:
   namespace: hetzner
   description: Role to configure an iPXE CA to cross-sign Root CAs
   company: Hetzner Cloud
-  license: MIT
+  license: GPL-3.0-or-later
   min_ansible_version: "2.10"
   platforms:
     - name: Ubuntu
