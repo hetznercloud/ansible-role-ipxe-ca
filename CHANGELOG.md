@@ -5,6 +5,11 @@
       Even if the timer is enabled, systemd will not generate certificates
       until the system has been rebooted or the timer has been started
       directly.
+    * tasks: Do not recurse on directory task
+
+      Ansible does not only recurse on the directory inodes, but also on the
+      files in these directories. Due to this behaviour, Ansible sets the permission
+      of all created certificates to 0755.
 
 *Not released yet*
 
