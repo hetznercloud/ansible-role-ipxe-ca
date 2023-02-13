@@ -67,4 +67,5 @@
 - name: "Ensure systemd timer is {{ 'enabled' if ipxe_ca__systemd_timer_enabled else 'disabled' }}"
   ansible.builtin.systemd:
     name: ipxe-ca-sign.timer
+    state: "{{ 'started' if ipxe_ca__systemd_timer_enabled else 'stopped' }}"
     enabled: "{{ ipxe_ca__systemd_timer_enabled }}"
