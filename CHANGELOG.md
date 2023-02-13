@@ -1,4 +1,4 @@
-# For next release
+# Patch Release v1.0.2 (2023-02-13)
   * **Tom Siewert**
     * tasks: Set timer state to started or stopped
       
@@ -6,12 +6,12 @@
       until the system has been rebooted or the timer has been started
       directly.
     * tasks: Do not recurse on directory task
-
+    
       Ansible does not only recurse on the directory inodes, but also on the
       files in these directories. Due to this behaviour, Ansible sets the permission
       of all created certificates to 0755.
 
-*Not released yet*
+*Released by Tom Siewert <tom.siewert@hetzner.com>*
 
 # Patch Release v1.0.1 (2023-02-07)
   * **Tom Siewert**
