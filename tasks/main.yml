@@ -9,9 +9,14 @@
 
 - name: Ensure iPXE CA web path exists
   ansible.builtin.file:
+    path: "{{ ipxe_ca__web_path }}"
+    state: directory
+    mode: '0755'
+
+- name: Ensure iPXE CA web sub-directories exist
+  ansible.builtin.file:
     path: "{{ ipxe_ca__web_path }}/{{ item }}"
     state: directory
-    recurse: true
     mode: '0755'
   loop:
     - auto
