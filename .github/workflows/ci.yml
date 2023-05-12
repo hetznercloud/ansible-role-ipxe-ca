@@ -27,6 +27,11 @@ jobs:
 
   molecule:
     name: Molecule
+
+    permissions:
+      # Required for hetznercloud/tps-action
+      id-token: write
+
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -40,11 +45,13 @@ jobs:
       - name: Install ansible and molecule
         run: pip3 install ansible molecule-hetznercloud
 
+      - uses: hetznercloud/tps-action@main
+        with:
+          token: ${{ secrets.HCLOUD_TOKEN }}
+
       - name: Run molecule
         run: |
-          export HCLOUD_TOKEN=$(./.ci/get-token.sh)
           molecule test
-          ./.ci/delete-token.sh ${HCLOUD_TOKEN}
         env:
           TTS_TOKEN: ${{ secrets.TTS_TOKEN }}
           PY_COLORS: '1'
