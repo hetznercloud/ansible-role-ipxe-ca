@@ -14,3 +14,5 @@ exclude_paths:
   - molecule/default/converge.yml
   - .git/
   - .cache/
+  - .github/
+  - .gitlab-ci.yml
