@@ -5,11 +5,10 @@ dependency:
   name: galaxy
 
 driver:
-  name: hetznercloud
+  name: molecule_hetznercloud
 
 platforms:
-  - name: ipxe-ca-default-jammy
-    server_type: cx11
+  - name: ipxe-ca-jammy-1
     image: ubuntu-22.04
     location: fsn1
 
