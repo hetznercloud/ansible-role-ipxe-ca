@@ -27,7 +27,7 @@ jobs:
             ${{ runner.os }}-gems-
 
       - name: Run Danger
-        uses: MeilCli/danger-action@v5
+        uses: MeilCli/danger-action@v6.0.50
         with:
           plugins_file: 'Gemfile'
           install_path: 'vendor/bundle'
